@@ -1,0 +1,17 @@
+[
+    {
+        "currency_code": "TRY",
+        "currency_name": "Turkish Lira",
+        "currency_symbol": "₺"
+    },
+    {
+        "currency_code": "USD",
+        "currency_name": "U.S. Dollar",
+        "currency_symbol": "$"
+    },
+    {
+        "currency_code": "EUR",
+        "currency_name": "Euro",
+        "currency_symbol": "€"
+    }
+]
