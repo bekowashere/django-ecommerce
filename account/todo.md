@@ -10,3 +10,12 @@ Product sinyali, fiyatı düştüyse o ürünün eklendiği favorites bul ve fav
 
 
 - USER API
+
+phone_number ve email değişikliği için işlemler yapılacak (phone_number customerda profileda)
+selleruser public_phone_numberıda zorunlu yapalım mı?
+
+multiple images yükleme ve silme şuanlık oluyor ama bak
+company_image update
+
+
+Email & Password İşlemleri

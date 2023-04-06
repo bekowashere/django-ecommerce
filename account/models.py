@@ -6,6 +6,9 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.utils.text import slugify
+from django.utils.crypto import get_random_string
+from account.utils import generate_seller_code, generate_random_seller_code
 
 # WORLD
 from world.models import Language, Country
@@ -269,11 +272,76 @@ class SellerUser(models.Model):
     # get_products_count
     # get_comments
 
+    @property
+    def get_all_images(self):
+        return self.seller_multiple_images.all()
+
     def __str__(self):
         return self.company_name
+    
+    # def save(self, *args, **kwargs):
+    #     # seller_slug
+    #     seller_slug = slugify(self.company_name)
+    #     exs_slug = False
+    #     exs_slug = self.__class__.objects.filter(seller_slug=seller_slug)
+    #     while exs_slug:
+    #         seller_slug = f'{seller_slug}-{get_random_string(9, "0123456789")}'
+    #         exs_slug = self.__class__.objects.filter(seller_slug=seller_slug)
+    #     self.seller_slug = seller_slug
+        
+    #     # code
+    #     seller_code = generate_seller_code(self.company_name)
+    #     exs_code = False
+    #     # exs_code = SellerUser.objects.filter(code=seller_code).exists()
+    #     exs_code = self.__class__.objects.filter(code=seller_code).exists()
+    #     while exs_code:
+    #         seller_code = generate_random_seller_code()
+    #         exs_code = self.__class__.objects.filter(code=seller_code).exists()
+    #     self.code = seller_code
+        
+    #     super(SellerUser, self).save(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        if (self.street_address_1 and self.postal_code and self.city and self.city_area and self.country):
+            self.is_verified = True
+        
+        super(SellerUser, self).save(*args, **kwargs)
     
     class Meta:
         # ordering rating
         ordering = ('company_name',)
         verbose_name = _('Seller')
         verbose_name_plural = _('Sellers')
+
+def upload_seller_multiple_image(instance, filename):
+    filebase ,extension = filename.split('.', 1)
+    return f'account/sellers/{instance.seller.user}/{instance.image_id}.{extension}'
+
+class SellerUserImage(models.Model):
+    seller = models.ForeignKey(
+        SellerUser,
+        on_delete=models.CASCADE,
+        verbose_name=_('Seller'),
+        related_name='seller_multiple_images'
+    )
+
+    image_id = models.UUIDField(
+        _('Image ID'),
+        default=uuid.uuid4,
+        editable=False
+    )
+
+    image = models.ImageField(
+        _('Image'),
+        upload_to=upload_seller_multiple_image,
+        validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])]
+    )
+
+    def __str__(self):
+        return str(self.image_id)
+    
+    # property image url
+    
+    class Meta:
+        verbose_name = _('Seller Image')
+        verbose_name_plural = _('Seller Images')

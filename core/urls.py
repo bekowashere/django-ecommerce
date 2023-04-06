@@ -6,7 +6,8 @@ from django.conf.urls.static import static
 from rest_framework_simplejwt.views import TokenRefreshView
 from account.api.views import (
     MyTokenObtainPairView,
-    CustomerMyTokenObtainPairView
+    CustomerMyTokenObtainPairView,
+    SellerMyTokenObtainPairView
 )
 
 urlpatterns = [
@@ -16,6 +17,7 @@ urlpatterns = [
     # TOKEN - LOGIN
     path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/login/customer/', CustomerMyTokenObtainPairView.as_view(), name='login_customer'),
+    path('api/login/seller/', SellerMyTokenObtainPairView.as_view(), name='login_seller'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
