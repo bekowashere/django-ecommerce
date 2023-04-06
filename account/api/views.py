@@ -21,7 +21,6 @@ from account.models import User, CustomerUser, SellerUser, Address, SellerUserIm
 
 # PASSWORD - EMAIL
 from django.contrib.auth.hashers import make_password, check_password
-from rest_framework import status
 
 # SERIALIZERS
 from account.api.serializers import (
@@ -44,10 +43,7 @@ from account.api.serializers import (
     SellerCodeSerializer,
     SellerContactSerializer,
     SellerLocationSerializer,
-    SellerUserImageSerializer,
-
-    # PASSWORD
-    ChangePasswordSerializer
+    SellerUserImageSerializer
 )
 
 class MyTokenObtainPairSerializer(TokenObtainSerializer):
@@ -453,50 +449,3 @@ class AddressCreateUpdateDeleteAPIView(APIView):
         except Exception as e:
             print(e)
             return Response({'status':'error', 'detail': f'{e}'}, status=status.HTTP_400_BAD_REQUEST)
-
-
-##########################################################
-class ChangePasswordView(UpdateAPIView):
-    """
-    A endpoint for changing password
-    """
-    # queryset = User.object.all()
-    permission_classes = (IsAuthenticated,)
-    serializer_class = ChangePasswordSerializer
-    model = User
-
-    def get_object(self):
-        obj = self.request.user
-        return obj
-    
-    def update(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        # serializer = self.get_serializer(data=request.data)
-        serializer = self.serializer_class(data=request.data, context={'request': request})
-
-        if serializer.is_valid():
-            # Check old_password
-            # self.object -> user
-            if not self.object.check_password(serializer.data.get('old_password')):
-                return Response({"old_password": "Old password is not correct"}, status=status.HTTP_400_BAD_REQUEST)
-            
-            # Check new passwords match
-            new_password = serializer.data.get('new_password')
-            new_password_confirm = serializer.data.get('new_password_confirm')
-            if new_password != new_password_confirm:
-                return Response({"new_password": "Password fields didn't match."}, status=status.HTTP_400_BAD_REQUEST)
-                
-            # set_password
-            self.object.set_password(serializer.data.get('new_password'))
-            self.object.save()
-
-            response = {
-                'status': 'success',
-                'code': status.HTTP_200_OK,
-                'message': 'Password updated successfully'
-            }
-
-            # serializer.save()
-
-            return Response(response, status=status.HTTP_200_OK)
-        return Response({'status': 'error', 'detail': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)

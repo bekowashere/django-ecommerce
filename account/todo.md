@@ -18,4 +18,5 @@ multiple images yükleme ve silme şuanlık oluyor ama bak
 company_image update
 
 
-Email & Password İşlemleri
+Email & Password İşlemleri +
+OTP eklensin mi?

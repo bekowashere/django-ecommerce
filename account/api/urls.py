@@ -16,10 +16,14 @@ from account.api.views import (
     SellerCodeUpdateAPIView,
     SellerContactUpdateAPIView,
     SellerLocationUpdateAPIView,
-    SellerMultipleImagesCreateAPIViewV2,
+    SellerMultipleImagesCreateAPIViewV2,  
+)
 
-    # PASSWORD
-    ChangePasswordView    
+from account.api.password_views import (
+    ChangePasswordView,
+    PasswordResetEmailAPIView,
+    PasswordResetTokenCheckAPIView,
+    SetNewPasswordAPIView
 )
 
 app_name = 'account'
@@ -48,5 +52,7 @@ urlpatterns = [
 
     # PASSWORD
     path('change-password/', ChangePasswordView.as_view(), name='change-password'),
-
+    path('password-reset-email/', PasswordResetEmailAPIView.as_view(), name="password-reset-email"),
+    path('password-reset/<uidb64>/<token>/', PasswordResetTokenCheckAPIView.as_view(), name="password-reset-check"),
+    path('password-set-update/', SetNewPasswordAPIView.as_view(), name="password-set-update"),
 ]
