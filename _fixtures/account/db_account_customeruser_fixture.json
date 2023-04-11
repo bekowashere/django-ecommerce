@@ -1,0 +1,13 @@
+[
+{
+    "model": "account.customeruser",
+    "pk": 4,
+    "fields": {
+        "first_name": "Berke",
+        "last_name": "Karatas",
+        "phone_number": "+905393182715",
+        "default_shipping_address": null,
+        "note": null
+    }
+}
+]

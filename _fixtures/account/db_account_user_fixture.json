@@ -1,0 +1,74 @@
+[
+{
+    "model": "account.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$ifS0PBEEqltZnPOv6MNcTk$/Aet/bDd4QOrdHFZGSBVZr5IRHj8eW6jpI9HNi0UKPE=",
+        "username": "seller2",
+        "email": "seller2@gmail.com",
+        "is_active": true,
+        "is_staff": false,
+        "is_superuser": false,
+        "date_joined": "2023-04-06T18:53:32.947Z",
+        "last_login": "2023-04-06T19:03:51.282Z",
+        "is_customer": false,
+        "is_seller": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$PzZoetKf36hjEhhWMgq14C$Op6KWM+NwdlPC70bEdWw+C35MdUWzgGxibVCtaQzulw=",
+        "username": "",
+        "email": "admin@gmail.com",
+        "is_active": true,
+        "is_staff": true,
+        "is_superuser": true,
+        "date_joined": "2023-04-06T20:07:24.750Z",
+        "last_login": "2023-04-06T20:07:27.995Z",
+        "is_customer": false,
+        "is_seller": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$my0wLy5hxgDgamIPdKzNbt$ucksmVE9q/opfwapxdWw3dQwmJVt0DVJ8+RWmxHgAaY=",
+        "username": "uberke.karatas",
+        "email": "uberke.karatas@gmail.com",
+        "is_active": true,
+        "is_staff": false,
+        "is_superuser": false,
+        "date_joined": "2023-04-06T20:19:55.535Z",
+        "last_login": "2023-04-06T22:31:52.046Z",
+        "is_customer": false,
+        "is_seller": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$7AE5dGmrYsKrqAC4sAAsry$CsRnOuMV+hMuP7OVUkw+09Hc5d4AiH9uwA3SxIBME6o=",
+        "username": "customer1",
+        "email": "customer1@gmail.com",
+        "is_active": true,
+        "is_staff": false,
+        "is_superuser": false,
+        "date_joined": "2023-04-09T01:45:53.135Z",
+        "last_login": "2023-04-09T01:45:53.313Z",
+        "is_customer": true,
+        "is_seller": false,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

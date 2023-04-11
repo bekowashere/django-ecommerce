@@ -1,0 +1,54 @@
+[
+{
+    "model": "account.selleruser",
+    "pk": 1,
+    "fields": {
+        "company_image": "account/sellers/default.png",
+        "company_name": "Mercanlar Otomotiv",
+        "seller_slug": "mercanlar-otomotiv",
+        "code": "MERC",
+        "description": null,
+        "website_url": null,
+        "phone_number": "+905393182715",
+        "public_phone_number": null,
+        "public_email": null,
+        "fax_number": null,
+        "street_address_1": null,
+        "street_address_2": null,
+        "postal_code": null,
+        "city": null,
+        "city_area": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "is_verified": false,
+        "languages": []
+    }
+},
+{
+    "model": "account.selleruser",
+    "pk": 3,
+    "fields": {
+        "company_image": "account/sellers/default.png",
+        "company_name": "Mercanlar Otomotiv",
+        "seller_slug": "mercanlar-otomotiv-547380670",
+        "code": "RGVI",
+        "description": null,
+        "website_url": null,
+        "phone_number": "+905393182715",
+        "public_phone_number": null,
+        "public_email": null,
+        "fax_number": null,
+        "street_address_1": null,
+        "street_address_2": null,
+        "postal_code": null,
+        "city": null,
+        "city_area": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "is_verified": false,
+        "languages": []
+    }
+}
+]
