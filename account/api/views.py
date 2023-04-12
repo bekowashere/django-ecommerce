@@ -427,7 +427,7 @@ class AddressCreateUpdateDeleteAPIView(APIView):
                 'data': serializer.data
             }
 
-            return Response({'status': 'success', 'address': serializer.data}, status=status.HTTP_200_OK)
+            return Response(response, status=status.HTTP_200_OK)
         return Response({'status': 'error', 'detail': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self, request):

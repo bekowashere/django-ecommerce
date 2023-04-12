@@ -1,2 +1,38 @@
 [
+{
+    "model": "account.address",
+    "pk": "b1c9e37d-233a-49d3-839e-790efd2e1deb",
+    "fields": {
+        "user": 2,
+        "address_name": "Home Default",
+        "first_name": "John",
+        "last_name": "Doe",
+        "company_name": "ArtnCode",
+        "phone_number": "+905391234567",
+        "street_address_1": "Topcular Mah. Osman Gazi Cad.",
+        "street_address_2": "Onur Apt. No:36/10",
+        "postal_code": "34055",
+        "city": "Eyupsultan",
+        "city_area": "Istanbul",
+        "country": 228
+    }
+},
+{
+    "model": "account.address",
+    "pk": "c671e862-3a15-45a2-9a0c-ae790176feba",
+    "fields": {
+        "user": 2,
+        "address_name": "My Home",
+        "first_name": "Martin",
+        "last_name": "Eden",
+        "company_name": "",
+        "phone_number": "+905391234567",
+        "street_address_1": "Topcular Mah. Osman Gazi Cad.",
+        "street_address_2": "No:2",
+        "postal_code": "34055",
+        "city": "Eyupsultan",
+        "city_area": "Istanbul",
+        "country": 228
+    }
+}
 ]

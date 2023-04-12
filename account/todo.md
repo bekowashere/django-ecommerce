@@ -20,3 +20,6 @@ company_image update
 
 Email & Password İşlemleri +
 OTP eklensin mi?
+
+endpoints.md de SellerUser imagesleri yazılacak -
+multiple images silme çalışmıyor??

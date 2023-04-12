@@ -1,6 +1,17 @@
 [
 {
     "model": "account.customeruser",
+    "pk": 2,
+    "fields": {
+        "first_name": "Martin",
+        "last_name": "Eden",
+        "phone_number": "+905392121949",
+        "default_shipping_address": "b1c9e37d-233a-49d3-839e-790efd2e1deb",
+        "note": null
+    }
+},
+{
+    "model": "account.customeruser",
     "pk": 4,
     "fields": {
         "first_name": "Berke",

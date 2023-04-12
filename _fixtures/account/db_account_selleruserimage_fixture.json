@@ -1,2 +1,29 @@
 [
+{
+    "model": "account.selleruserimage",
+    "pk": 1,
+    "fields": {
+        "seller": 3,
+        "image_id": "d76c0af1-65f2-4ef6-b6f1-9b736465ad6b",
+        "image": "account/sellers/seller1@gmail.com/d76c0af1-65f2-4ef6-b6f1-9b736465ad6b.jpg"
+    }
+},
+{
+    "model": "account.selleruserimage",
+    "pk": 3,
+    "fields": {
+        "seller": 3,
+        "image_id": "4562a118-8f15-430a-9c5a-dc31d7362297",
+        "image": "account/sellers/seller1@gmail.com/4562a118-8f15-430a-9c5a-dc31d7362297.jpg"
+    }
+},
+{
+    "model": "account.selleruserimage",
+    "pk": 5,
+    "fields": {
+        "seller": 3,
+        "image_id": "be29a3a0-5eca-44b9-bd11-d52fa65858ce",
+        "image": "account/sellers/seller1@gmail.com/be29a3a0-5eca-44b9-bd11-d52fa65858ce.jpg"
+    }
+}
 ]
