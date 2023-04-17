@@ -1,0 +1,54 @@
+[
+    {
+        "product_attribute": "Ekran Boyutu",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Garanti Tipi",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Smart TV",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Görüntü Kalitesi",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Wi-Fi",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "İşletim Sistemi",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Görüntüleme Teknolojisi",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Dahili Uydu Alıcı",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Çözünürlük (Piksel)",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Renk",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "HDR",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Kurulum",
+        "product_type": "Televizyon"
+    },
+    {
+        "product_attribute": "Enerji Sınıfı",
+        "product_type": "Televizyon"
+    }
+]

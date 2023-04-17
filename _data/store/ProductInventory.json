@@ -1,0 +1,69 @@
+[
+    {
+        "product_type": "Televizyon",
+        "product": "48244830",
+        "sku":"SKU-48244830",
+        "upc": "UPC-48244830",
+        "moq": null,
+        "retail_price": 3.000,
+        "store_price": 3.800,
+        "attribute_values": [
+            {
+                "product_attribute": "Ekran Boyutu",
+                "attribute_value": "32\" / 81 Ekran"
+            },
+            {
+                "product_attribute": "Garanti Tipi",
+                "attribute_value": "Resmi Distribütör Garantili"
+            },
+            {
+                "product_attribute": "Smart TV",
+                "attribute_value": "Var"
+            },
+            {
+                "product_attribute": "Görüntü Kalitesi",
+                "attribute_value": "HD Ready"
+            },
+            {
+                "product_attribute": "Wi-Fi",
+                "attribute_value": "Var"
+            },
+            {
+                "product_attribute": "İşletim Sistemi",
+                "attribute_value": "Android"
+            },
+            {
+                "product_attribute": "Görüntüleme Teknolojisi",
+                "attribute_value": "LED"
+            },
+            {
+                "product_attribute": "Dahili Uydu Alıcı",
+                "attribute_value": "Var"
+            },
+            {
+                "product_attribute": "Çözünürlük (Piksel)",
+                "attribute_value": "1366 x 768"
+            },
+            {
+                "product_attribute": "Renk",
+                "attribute_value": "Siyah"
+            },
+            {
+                "product_attribute": "HDR",
+                "attribute_value": "Yok"
+            },
+            {
+                "product_attribute": "Kurulum",
+                "attribute_value": "Hayır"
+            },
+            {
+                "product_attribute": "Enerji Sınıfı",
+                "attribute_value": "A"
+            }
+        ],
+        "is_active": true,
+        "is_default": true,
+        "is_digital": false,
+        "weight": 20.0
+    }
+]

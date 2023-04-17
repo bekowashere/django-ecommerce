@@ -30,13 +30,15 @@ INSTALLED_APPS = [
 
     # local apps
     'account.apps.AccountConfig',
+    'store.apps.StoreConfig',
     'world.apps.WorldConfig',
 
     # packages
     'rest_framework',
     'rest_framework_simplejwt',
     'django_filters',
-    'corsheaders'
+    'corsheaders',
+    'mptt'
 
 ]
 

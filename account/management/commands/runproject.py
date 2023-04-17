@@ -1,6 +1,7 @@
 from django.core.management import call_command
 from django.core.management import BaseCommand, CommandError
 
+# address gibi modellerde hata alıyoruz
 def load_account_data():
     call_command("loaddata", "_fixtures/account/db_account_user_fixture.json")
     call_command("loaddata", "_fixtures/account/db_account_customeruser_fixture.json")
@@ -25,7 +26,7 @@ class Command(BaseCommand):
             call_command("add_countries")
 
             # account
-            load_account_data()
+            # load_account_data()
 
             # all fixture.json
             # call_command("loaddata", "db_admin_fixture.json")
