@@ -25,6 +25,12 @@ class Command(BaseCommand):
             call_command("add_currency")
             call_command("add_countries")
 
+            # store
+            call_command("add_ProductAttribute")
+            call_command("add_ProductAttributeValue")
+            call_command("add_ProductType")
+            call_command("add_ProductTypeAttribute")
+
             # account
             # load_account_data()
 

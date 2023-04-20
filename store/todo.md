@@ -12,3 +12,6 @@
 
 Garanti Süresi ? (Valuesu yoksa zaten ekliyoruz commandsta istekte de böyle) 
 Model Yılı ?  (Valuesu yoksa zaten ekliyoruz commandsta istekte de böyle yap)
+
+
+attribute values olayına code fieldı eklenebilir. sorgular ve eşleştirmeler daha kolay olur

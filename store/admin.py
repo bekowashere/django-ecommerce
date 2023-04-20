@@ -7,8 +7,10 @@ from store.models import (
     ProductAttributeValue,
     ProductType,
     ProductTypeAttribute,
+    Brand,
     Product,
     ProductInventory,
+    ProductInventoryMedia,
     Stock,
     ProductAttributeValues
 )
@@ -66,27 +68,48 @@ class ProductTypeAttributeAdmin(admin.ModelAdmin):
     list_filter = ('product_type',)
     search_fields = ('product_type__name__icontains', 'product_attribute__name__icontains')
 
+admin.site.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    search_fields = ('name', 'slug')
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (_('Main Information'), {'fields': ('web_id', 'slug', 'name', 'category', 'brand')}),
+        (_('Features'), {'fields': ('is_active', 'is_new')}),
+        (_('Description'), {'fields': ('description',)}),
+        (_('Metadata'), {'fields': ('created_date', 'updated_date')}),
+    )
+
+    list_display = ('web_id', 'slug', 'name')
+    list_filter = ('is_active', 'is_new', 'category', 'brand')
+    search_fields = ('web_id', 'slug', 'name')
+    readonly_fields = ('created_date', 'updated_date')
+
+
 class ProductAttributeValuesInline(admin.TabularInline):
     model = ProductAttributeValues
 
 @admin.register(ProductInventory)
 class ProductInventoryAdmin(admin.ModelAdmin):
     fieldsets = (
-        (_('Main Information'), {'fields': ('product_type', 'product')}),
+        (_('Main Information'), {'fields': ('product_type', 'product', 'web_slug')}),
         (_('Product Information'), {'fields': ('sku', 'upc', 'moq', 'weight')}),
         (_('Price'), {'fields': ('retail_price', 'store_price')}),
         (_('Features'), {'fields': ('is_active', 'is_default', 'is_digital')}),
         (_('Metadata'), {'fields': ('created_date', 'updated_date')}),
     )
 
-    list_display = ('sku', 'upc')
+    list_display = ('sku', 'upc', 'web_slug')
     list_filter = ('is_active', 'is_default', 'is_digital')
     search_fields = (
         'product__web_id__icontains',
         'product__name__icontains',
         'product__slug__icontains',
         'sku',
-        'upc'
+        'upc',
+        'web_slug'
     )
     readonly_fields = ('created_date', 'updated_date')
     filter_horizontal = ('attribute_values',)
@@ -94,21 +117,8 @@ class ProductInventoryAdmin(admin.ModelAdmin):
     inlines = [
         ProductAttributeValuesInline
     ]
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    fieldsets = (
-        (_('Main Information'), {'fields': ('web_id', 'slug', 'name', 'category')}),
-        (_('Features'), {'fields': ('is_active', 'is_new')}),
-        (_('Description'), {'fields': ('description',)}),
-        (_('Metadata'), {'fields': ('created_date', 'updated_date')}),
-    )
-
-    list_display = ('web_id', 'slug', 'name')
-    list_filter = ('is_active', 'is_new')
-    search_fields = ('web_id', 'slug', 'name')
-    readonly_fields = ('created_date', 'updated_date')
-
+    
+admin.site.register(ProductInventoryMedia)
 admin.site.register(Stock)
 admin.site.register(ProductAttributeValues)
 

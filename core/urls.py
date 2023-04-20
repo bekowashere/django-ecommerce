@@ -13,6 +13,7 @@ from account.api.views import (
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/account/', include('account.api.urls')),
+    path('api/store/', include('store.api.urls')),
 
     # TOKEN - LOGIN
     path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),

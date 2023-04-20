@@ -1,6 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
+from django.core.validators import FileExtensionValidator
+from django.utils.crypto import get_random_string
+from django.utils.text import slugify
+from account.models import User, SellerUser
 
 """
 Review:
@@ -122,8 +126,36 @@ class ProductTypeAttribute(models.Model):
         verbose_name =_('Product Type Attribute')
         verbose_name_plural = _('Product Type Attributes')
 
+class Brand(models.Model):
+    name = models.CharField(
+        _('Brand Name'),
+        max_length=64,
+        unique=True
+    )
+
+    slug = models.SlugField(
+        _('Slug'),
+        max_length=128,
+        unique=True
+    )
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        ordering = ('name',)
+        verbose_name = _('Brand')
+        verbose_name_plural = _('Brands')
+
 # PRODUCT
 class Product(models.Model):
+    seller = models.ForeignKey(
+        SellerUser,
+        on_delete=models.CASCADE,
+        verbose_name=_('Seller'),
+        related_name='seller_products'
+    )
+
     web_id = models.CharField(
         _('Web ID'),
         max_length=64,
@@ -140,12 +172,22 @@ class Product(models.Model):
     )
     category = models.ForeignKey(
         Category,
-        related_name = 'products',
+        related_name = 'category_products',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
         verbose_name=_('Category')
     )
+
+    brand = models.ForeignKey(
+        Brand,
+        related_name = 'brand_products',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_('Brand')
+    )
+
     description = models.TextField(
         _('Product Description'),
         blank=True
@@ -162,11 +204,18 @@ class Product(models.Model):
     def __str__(self):
         return self.web_id
     
+    def save(self, *args, **kwargs):
+        super(Product, self).save(*args, **kwargs)
+    
     class Meta:
         ordering = ('-created_date',)
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
 
+"""
+bir producta birden fazla product inventory bağlıysa detay sayfasında diğer product inventory
+ürünlerini de göster
+"""
 class ProductInventory(models.Model):
     product_type = models.ForeignKey(
         ProductType,
@@ -179,8 +228,9 @@ class ProductInventory(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_('Product')
     )
-
+    
     # INVENTORY INFORMATION
+    # upc ürünün dünyadaki genel kodu, sku bizim envanterimizde tuttuğumuz kod
     sku = models.CharField(
         _('Stock Keeping Unit'),
         max_length=32,
@@ -195,6 +245,11 @@ class ProductInventory(models.Model):
         _('Minumum Order Quantity'),
         null=True,
         blank=True
+    )
+
+    # Field?
+    web_slug = models.TextField(
+        _('Web Slug')
     )
 
     # PRICE
@@ -233,7 +288,7 @@ class ProductInventory(models.Model):
     )
 
 
-    weight = models.FloatField(_('Product Weight'))
+    weight = models.FloatField(_('Product Weight'), null=True, blank=True)
 
     # METADA
     created_date = models.DateTimeField(auto_now_add=True)
@@ -242,9 +297,42 @@ class ProductInventory(models.Model):
     def __str__(self):
         return self.sku
     
+    def save(self, *args, **kwargs):
+        # web_slug = product__slug + sku || product__slug + product__web_id + sku
+        new_web_slug = f'{self.product.slug}-{self.product.web_id}-{self.sku}'
+        self.web_slug = new_web_slug
+        super(ProductInventory, self).save(*args, **kwargs)
+
+    
     class Meta:
         verbose_name = _('Product Inventory')
         verbose_name_plural = _('Product Inventories')
+
+# sonradan değişebiliriz şimdilik böyle basit bir yol
+def upload_inventory_media(instance, filename):
+    filebase, extension = filename.rsplit('.', 1)
+    img_path = f'store/{instance.product_inventory.sku}.{extension}'
+    return img_path
+
+
+class ProductInventoryMedia(models.Model):
+    product_inventory = models.ForeignKey(
+        ProductInventory,
+        related_name='media',
+        on_delete=models.PROTECT,
+        verbose_name=_('Product Inventory')
+    )
+
+    image = models.ImageField(
+        _('Product Inventory Image'),
+        upload_to=upload_inventory_media,
+        validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])]
+    )
+
+    class Meta:
+        verbose_name = _('Product Inventory Media')
+        verbose_name_plural = _('Product Inventory Medias')
+
 
 STOCK_STATUS = (
     ('in-stock', _('Available')),
